@@ -57,7 +57,8 @@ Hash-Generator/
 ### 🔐 SHA-256 Hash Generation
 
 > Demonstrates the successful generation of a SHA-256 hash from user input along with hash details, date, and time.
-<img width="1920" height="1080" alt="hash_generator" src="https://github.com/user-attachments/assets/4a507b4c-716f-45af-a90d-8c2264196522" />
+<img width="687" height="761" alt="hash_generator" src="https://github.com/user-attachments/assets/aab39b11-9c06-442e-9393-d032f8f823f3" />
+
 
 
 
