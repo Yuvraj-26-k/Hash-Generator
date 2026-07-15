@@ -57,16 +57,9 @@ Hash-Generator/
 ### 🔐 SHA-256 Hash Generation
 
 > Demonstrates the successful generation of a SHA-256 hash from user input along with hash details, date, and time.
+![Uploading hash_generator.png…]()
 
-*(Insert Screenshot 1 Here)*
 
----
-
-### 💾 Report Saved Successfully
-
-> Demonstrates successful report generation and saving. The application displays the absolute path of the saved report after completion.
-
-*(Insert Screenshot 2 Here)*
 
 ---
 
