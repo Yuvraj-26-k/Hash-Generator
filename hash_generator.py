@@ -200,5 +200,3 @@ while True:
         print(f"{red}[!] Enter only Y or N!{reset}")
         continue
         
-       
-        
