@@ -1,7 +1,93 @@
 import hashlib
-import time
-import os
 from datetime import datetime
+import os
+import time
+
+# ----------------------------+
+# Hash Generation Function    |
+# ----------------------------+
+
+def generate_hash(algorithm):
+
+    text = input("[#] Enter Text : ")
+
+    if algorithm == "MD5":
+        hash_value = hashlib.md5(text.encode()).hexdigest()
+
+    elif algorithm == "SHA1":
+        hash_value = hashlib.sha1(text.encode()).hexdigest()
+
+    elif algorithm == "SHA224":
+        hash_value = hashlib.sha224(text.encode()).hexdigest()
+
+    elif algorithm == "SHA256":
+        hash_value = hashlib.sha256(text.encode()).hexdigest()
+
+    elif algorithm == "SHA384":
+        hash_value = hashlib.sha384(text.encode()).hexdigest()
+
+    elif algorithm == "SHA512":
+        hash_value = hashlib.sha512(text.encode()).hexdigest()
+    print(f"{purple}[#] Generating {algorithm} Hash{reset}")
+
+    full="█"
+    empty="░"
+
+    for i in range(11):
+        percent=i*10
+        print(f"\r{purple}{full*i}{empty*(10-i)} {percent}%{reset}",end="",flush=True)
+        time.sleep(0.1)
+
+    print()
+    print(f"{green}[/] Hash Generated Successfully!{reset}")
+
+
+    return text, hash_value, algorithm
+
+
+# ----------------------------
+# Report Function
+# ----------------------------
+def report(text, hash_value, algorithm):
+
+    current = datetime.now()
+    
+    for i in range(40):
+        print("=", end="", flush=True)
+        time.sleep(0.01)
+    print()
+    
+    letter="Generated report".upper().center(40)
+    
+    for l in letter:
+        print(l, end="", flush=True)
+        time.sleep(0.01)
+    print()
+    
+    for i in range(40):
+        print("=", end="", flush=True)
+        time.sleep(0.01)
+    print()
+    
+    report = (f"""
+{'='*40}
+Original Text : {text}         \n
+Hash Length   : {len(hash_value)} Characters \n
+Algorithm : {algorithm}
+Generated Hash: \n
+{hash_value}    \n
+
+Date : {current.strftime('%d-%m-%Y')}
+Time : {current.strftime('%H:%M:%S')}
+{'='*40}
+""")
+    
+    print(report)
+
+
+# ----------------------------
+# Main Program
+# ----------------------------
 
 red="\033[91m"
 green="\033[92m"
@@ -9,144 +95,110 @@ yellow="\033[93m"
 blue="\033[94m"
 purple="\033[95m"
 reset="\033[0m"
-     
 
 while True:
-    for i in range(20):
-        print("=", end="", flush=True)
-        time.sleep(0.02)
-    print()
-    
-    letters1=  "Hash generator"  .center(20).upper()
-    
-    for l in letters1:
-        print(l, end="" , flush=True)
-        time.sleep(0.02)
-    print()
-    
-    for i in range(20):
-        print("=", end="", flush=True)
-        
-    print(yellow + "\n[$] Initializing" + reset, end="", flush=True)
-    
-    for i in range(10):
-        print(".", end="", flush=True)
-        time.sleep(0.1)
-    print()
-    
-    print(yellow + "[$] Loading Modules" + reset, end="", flush=True)
-    
-    for i in range(10):
-        print(".", end="", flush=True)
-        time.sleep(0.1)
-    print()
-    
-    text=str(input( "Enter Text: \n "))
-    hash1=hashlib.sha256(text.encode()).hexdigest()
-    leng1=len(hash1)
-    current=datetime.now()
-    
-    
-    full="█"
-    empty="░"
-    
-    print("[#] Generating SHA-256 Hash")
-        
-    for i in range(11):
-        percent=i*10
-        print(f"\r{full*i}{empty*(10-i)} {percent}%",end="", flush=True)
-        time.sleep(0.25)
-    print()
-    
-    print("Hash Generated Successfully!")
-    
-    for i in range(30):
-        print("=", end="", flush=True)
-        time.sleep(0.02)
-    print()
-    
-    letters2="Hash report".upper().center(30)
-    
-    for l in letters2:
-        print(l, end="", flush=True)
-        time.sleep(0.2)
-    print()
-    
-    for i in range(30):
-        print("=", end="", flush=True)
-        time.sleep(0.02)
-    print()
-    
-    report=f"""
-    Original Text : {text} \n
-    Algorithm    : SHA-256 \n
-    
-    Hash Length  : {leng1} Characters \n
-    
-    Generated Hash : \n {hash1} \n    
-    
-    Date : {current.strftime("%d-%m-%Y")} \n
-    Time : {current.strftime("%H:%M:%S")}
-    
-    """
-    print(report)
 
-    for i in range(30):
-        print("=", end="", flush=True)
-        time.sleep(0.02)
+    for i in range(40):
+       print(yellow + '=' + reset, end="", flush=True)
+       time.sleep(0.02)
     print()
     
-    choice=str(input("[$] Do you want to save the report? (Y/N):")).upper()
-    if choice == "Y":
-        file1=str(input("Enter report file name:"))  
-        if not file1.endswith(".txt"):
-            file1+=".txt"
-    elif choice == "N":
-        print("[!] Exiting", end="", flush=True)
+    letter="Hash generator".upper().center(40)
+    
+    for l in letter:
+        print(blue + l + reset, end="", flush=True)
+        time.sleep(0.01)
+    print()
+  
+    for i in range(40):
+        print(yellow + '=' + reset, end="", flush=True)
+        time.sleep(0.01)
         
-        for i in range(10):
-            print(".", end="", flush=True)
-            time.sleep(0.3)
-        print()
-        break
-    else:
-        print(red + "Enter only Y or N!" + reset)
+    menu = (f"""
+[1] MD5
+[2] SHA1 
+[3] SHA224
+[4] SHA256
+[5] SHA384
+[6] SHA512
+[7] Exit
+""")
+    
+    print(menu)
+
+    try:
+        choice = int(input(yellow + "[</>] Enter Choice : " + reset))
+    except ValueError:
+        print(yellow + "[!] Enter numbers only!" + reset)
         continue
 
-    file2=open(file1,"w")
-    file2.write(report)
-    file2.close()
+    if choice == 7:
+        print(green + "[$] Thank you!" + reset)
+        break
+
+    if choice == 1:
+        result = generate_hash("MD5")
+
+    elif choice == 2:
+        result = generate_hash("SHA1")
+
+    elif choice == 3:
+        result = generate_hash("SHA224")
+
+    elif choice == 4:
+        result = generate_hash("SHA256")
+
+    elif choice == 5:
+        result = generate_hash("SHA384")
+
+    elif choice == 6:
+        result = generate_hash("SHA512")
+
+    else:
+        print(red + "[!] Invalid Choice!" + reset)
+        continue
+
+    text, hash_value, algorithm = result
+
+    report(text, hash_value, algorithm)
+
+    save = input(green + "\n[!] Save Report? (Y/N): " + reset).upper()
+
+    if save == "Y":
+
+        filename = input(blue + "[#] File Name : " + reset)
+
+        if not filename.endswith(".txt"):
+            filename += ".txt"
+
+        with open(filename, "w") as file:
+
+            file.write(f"""
+            Original Text : {text}
+            Algorithm : {algorithm}
+
+            Generated Hash : {hash_value}
+
+            Date : {datetime.now().strftime("%d-%m-%Y")}
+            Time : {datetime.now().strftime("%H:%M:%S")}
+                                                        """)
+
+        print(green + "[/] Report Saved Successfully!" + reset)
+        location = os.path.abspath(filename)
+
+        print(f"{blue}[$] Location : {location}{reset}")
     
-    print("[$] Saving Report",end="",flush=True)
-    
-    for i in range(11):
-        percent=i*10
-        print(f"\r{full*i}{empty*(10-i)} {percent}%",end="", flush=True)
-        time.sleep(0.25)
-    print()
-    
-    print("[/] Report Saved Successfully!")
-    
-    path1=os.path.abspath(file1)
-    
-    print(f"[$] Location : \n{path1}")
-    
-    for i in range(30):
-        print("=", end="", flush=True)
-        time.sleep(0.02)
-    print()
-    
-    text1="thank you for using\nHash generator".upper()
-    
-    for t in text1:
-        print(t,end="",flush=True)
-        time.sleep(0.1)
-    print()
-    
-    print("[!] Exiting", end="", flush=True)
-    
-    for i in range(5):
-        print(".", end="", flush=True)
-        time.sleep(0.1)
-    print()
-    break
+    elif save == "N":
+        print(blue + "[#] Exiting".upper() + reset, end="", flush=True)
+        for i in range(7):
+            print(blue + "." + reset, end="", flush=True)
+            time.sleep(0.1)
+        print()
+        break
+        
+    else:
+        print(f"{red}[!] Enter only Y or N!{reset}")
+        continue
+        
+       
+        
