@@ -1,131 +1,42 @@
-# 🔐 Hash Generator v2.0
+# Hash Generator
 
-A colorful Python Command-Line Interface (CLI) application that generates cryptographic hashes using multiple hashing algorithms. Built as a cybersecurity learning project with an interactive interface, animations, progress bars, and report generation.
+**An interactive Python exercise for hashing entered text.**
 
----
+Generate a digest of UTF-8 text using MD5, SHA-1, SHA-224, SHA-256, SHA-384 or
+SHA-512, display its length and timestamp, and optionally save a report.
+This script does not read or stream files for hashing.
 
-## ✨ Features
+## Run
 
-- 🔑 Supports 6 hashing algorithms
-  - MD5
-  - SHA1
-  - SHA224
-  - SHA256
-  - SHA384
-  - SHA512
+Python 3 and its standard library are sufficient.
 
-- 🎨 Colorful CLI Interface
-- ⏳ Animated Loading Effects
-- 📊 Real-time Progress Bar
-- 📋 Detailed Hash Report
-- 💾 Save Report as `.txt`
-- 📅 Automatic Date & Time Stamp
-- 🧩 Built using Python Functions
-- 🛡️ Beginner-friendly Cybersecurity Project
-
----
-
-## 📸 Screenshot
-
-<img width="663" height="810" alt="2026-07-16" src="https://github.com/user-attachments/assets/915e5869-38be-470b-97f3-13435fc8bc84" />
-
-
----
-
-## 🚀 Installation
-
-Clone the repository
-
-```bash
+```sh
 git clone https://github.com/Yuvraj-26-k/Hash-Generator.git
-```
-
-Move into the project
-
-```bash
 cd Hash-Generator
-```
-
-Run the program
-
-```bash
 python hash_generator.py
 ```
 
----
+Choose an algorithm, enter non-secret sample text such as `hello`, and choose
+whether to save a report. A safe output example is `hello-digest-demo.txt`;
+the program adds `.txt` if needed, but can overwrite an existing destination.
 
-## 🖥️ Sample Output
+## Security boundaries
 
-```
-========================================
-          HASH GENERATOR
-========================================
+MD5 and SHA-1 are legacy/educational options, not recommendations for new
+security-sensitive designs. A plain digest is not password storage or
+encryption. **Reports include the original entered text as well as its digest.**
+Never enter passwords, tokens or confidential data into this demo.
 
-[1] MD5
-[2] SHA1
-[3] SHA224
-[4] SHA256
-[5] SHA384
-[6] SHA512
-[7] Exit
+![Historical terminal example hashing non-secret text](Hash_generator.png)
 
-[#] Enter Text :
-```
+This existing screenshot shows the interface; it is not a new benchmark or
+test result. Current files are `hash_generator.py`, `Hash_generator.png` and
+`README.md`.
 
----
+## Development status
 
-## 📂 Project Structure
-
-```
-Hash-Generator/
-│
-├── hash_generator.py
-├── README.md
-└── hash_generator.png
-```
-
----
-
-## 🛠️ Technologies Used
-
-- Python 3
-- hashlib
-- datetime
-- os
-- time
-
----
-
-## 📚 Concepts Practiced
-
-- Python Functions
-- File Handling
-- Modules
-- Cryptographic Hashing
-- CLI Development
-- Progress Bar Animation
-- String Formatting
-- User Input Validation
-
----
-
-## ⚠️ Note
-
-This project is developed for **educational purposes** to understand cryptographic hash functions. It is **not intended for password cracking or malicious activities**.
-
----
-
-## 👨‍💻 Author
-
-**Yuvraj Singh**
-
-Cybersecurity & Ethical Hacking Student
-
-GitHub:
-https://github.com/Yuvraj-26-k
-
----
-
-## ⭐ If you like this project
-
-Give this repository a ⭐ on GitHub!
+The digest calculations use `hashlib`; the interactive loop runs at import,
+animations introduce artificial delay, and file-error handling needs work.
+There is no first-party test suite. Priorities are separating UI from logic,
+known-vector tests, optional omission of original text and create-only reports.
+The original repository/history are retained; no consolidation occurs here.
